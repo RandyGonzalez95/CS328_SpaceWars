@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveBullet : MonoBehaviour {
+public class MoveBullet : MonoBehaviour
+{
 
     public Vector2 speed;
     Rigidbody2D bullet;

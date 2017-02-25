@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireGun : MonoBehaviour {
-
-    public GameObject bullet;
+public class FireGun : MonoBehaviour
+{
     public float delayTime = 0.5f;
 
     private float counter = 0;
 
     public GameObject left;
     public GameObject right;
+    public GameObject player;
 
     // Use this for initialization
 	void Start ()
@@ -24,23 +24,12 @@ public class FireGun : MonoBehaviour {
         // When player presses Space the gun will shoot
 		if(Input.GetKey(KeyCode.Space) && (counter > delayTime))
         {
-            Instantiate(bullet, this.transform.position, this.transform.rotation);
+            Instantiate(left, this.transform.position, this.transform.rotation);
             GetComponent<AudioSource>().Play();
             counter = 0;
         }
 
-        counter += 1 * Time.deltaTime;
-
-        //Destroy(bullet);
-        //CheckBoundary();
-
+        counter += 1 * Time.deltaTime;        
     }
 
-    private void CheckBoundary()
-    {
-        if ((bullet.transform.position.x < left.transform.position.x))
-        {
-           
-        }
-    }
 }
