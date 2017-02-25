@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveBullet : MonoBehaviour {
-
-    public Vector2 speed;
-    Rigidbody2D bullet;
-
+public class DestroyWithDelay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start ()
     {
-        bullet = GetComponent<Rigidbody2D>();
+		
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        bullet.velocity = speed;
+		
 	}
 }
