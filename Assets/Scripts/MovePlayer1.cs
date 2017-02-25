@@ -29,9 +29,7 @@ public class MovePlayer1 : MonoBehaviour
 
     private void Move()
     {
-        
-
-          // Character Goes UP
+        // Character Goes UP
         if (Input.GetKey(KeyCode.W))
         {
             this.transform.position += Vector3.up * speed * Time.deltaTime;
