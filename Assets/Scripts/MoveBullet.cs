@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿// Space Wars Replica Game
+// CS 328
+// "MoveBullet.cs"
+// Randy Gonzalez 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

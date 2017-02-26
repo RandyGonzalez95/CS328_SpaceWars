@@ -67,6 +67,7 @@ public class MovePlayer1 : MonoBehaviour
             actualFlare = right;
         }
 
+        // Fire Gun
         Fire();
 
     } // End Move

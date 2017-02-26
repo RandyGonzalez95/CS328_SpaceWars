@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// Space Wars Replica Game
+// CS 328
+// "DestroyWithDelay.cs"
+// Randy Gonzalez 
 using UnityEngine;
 
 public class DestroyWithDelay : MonoBehaviour
