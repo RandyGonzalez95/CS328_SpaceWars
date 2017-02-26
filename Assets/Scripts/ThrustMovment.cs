@@ -8,15 +8,28 @@ public class ThrustMovment : MonoBehaviour
     public float thrustForce;
     Rigidbody2D player;
 
+    public GameObject bullet;
+    Transform firePosition;
+
 	// Use this for initialization
 	void Start ()
     {
-        player = GetComponent<Rigidbody2D>();       
+        player = GetComponent<Rigidbody2D>();
+        firePosition = transform.FindChild("FirePoint");
 
 	}
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
+            GetComponent<AudioSource>().Play();
+        }
+    }
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         // Character Goes UP
         if (Input.GetKey(KeyCode.W))
