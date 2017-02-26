@@ -23,4 +23,12 @@ public class MoveBullet : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().AddForce(-transform.right * speed);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "blackhole")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
