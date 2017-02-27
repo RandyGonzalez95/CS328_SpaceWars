@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class AsteroidCtrl : MonoBehaviour
 {
-    float minTorque = -100f;
-    float maxTorque = 100f;
-    float minForce = 20f;
-    float maxForce = 40f;
+    public float minTorque;
+    public float maxTorque;
+    public float minForce;
+    public float maxForce;
+
 	// Use this for initialization
 	void Start ()
     {
+        // Set Random range for force and torque
         float magnitude = Random.Range(minForce, maxForce);
         float x = Random.Range(-1f, 1f);
         float y = Random.Range(-1f, 1f);
         GetComponent<Rigidbody2D>().AddForce(magnitude * new Vector2(x,y));
-
         float torque = Random.Range(minTorque, maxTorque);
         GetComponent<Rigidbody2D>().AddTorque(torque);
 	}
