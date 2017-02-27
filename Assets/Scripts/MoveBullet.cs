@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class MoveBullet : MonoBehaviour
 {
-
+    public bool flag; // this specifies wheter we shoot left or right
     public float speed = 15f;
 
 	// Use this for initialization
@@ -22,7 +22,15 @@ public class MoveBullet : MonoBehaviour
 	void Update ()
     {
         // Apply force to move bullet
-        GetComponent<Rigidbody2D>().AddForce(-transform.right * speed);
+        if(flag)
+        {
+            GetComponent<Rigidbody2D>().AddForce(-transform.right * speed);
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.right * speed);
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

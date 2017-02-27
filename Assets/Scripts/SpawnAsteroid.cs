@@ -25,7 +25,7 @@ public class SpawnAsteroid : MonoBehaviour
         if(spawnCounter < maxSpawn)
         {
             // Loop for 10 asteroids
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 100; i++)
             {
                 // Randomize location for asteroid
                 x = Random.Range(-18f, 18f);

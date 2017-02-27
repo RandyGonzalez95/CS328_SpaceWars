@@ -10,11 +10,13 @@ public class BlackHole : MonoBehaviour
 
     GameObject gameobject;
     GameObject player;
+    GameObject player2;
 	// Use this for initialization
 	void Start ()
     {
         gameobject = GameObject.FindGameObjectWithTag("gameobject");
         player = GameObject.FindGameObjectWithTag("Player");
+        player2 = GameObject.FindGameObjectWithTag("Player2");
         distanceFromCenter = Vector3.zero;
     }
 	
@@ -31,7 +33,13 @@ public class BlackHole : MonoBehaviour
         {
             distanceFromCenter = (transform.position - player.transform.position).normalized;
             player.GetComponent<Rigidbody2D>().AddForce(distanceFromCenter * forceForPlayer);
-        }     
+        }
+
+        if (player2 != null)
+        {
+            distanceFromCenter = (transform.position - player2.transform.position).normalized;
+            player2.GetComponent<Rigidbody2D>().AddForce(distanceFromCenter * forceForPlayer);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -41,6 +49,11 @@ public class BlackHole : MonoBehaviour
         if (collision.collider.tag == "Player")
         {
             Destroy(player);
+        }
+
+        if (collision.collider.tag == "Player2")
+        {
+            Destroy(player2);
         }
     }
 }

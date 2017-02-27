@@ -24,6 +24,7 @@ public class MovePlayer2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightControl))
         {
             Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
+            GetComponent<AudioSource>().Play();
             //GetComponent<AudioSource>().Play();
         }
     }
@@ -42,7 +43,7 @@ public class MovePlayer2 : MonoBehaviour
         {
             player.angularVelocity = speed;
         }
-        // Character Goes Down
+        // Hyperspace
         else if (Input.GetKey(KeyCode.S))
         {
 
