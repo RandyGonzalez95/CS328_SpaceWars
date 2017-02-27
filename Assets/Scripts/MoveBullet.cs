@@ -21,14 +21,23 @@ public class MoveBullet : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        // Apply force to move bullet
         GetComponent<Rigidbody2D>().AddForce(-transform.right * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // if bullet goes into black hole, destroy it
         if (collision.collider.tag == "blackhole")
         {
             Destroy(this.gameObject);
+        }
+
+        // Destroy asteriod if we hit it with bullet
+        if(collision.collider.tag == "asteroid")
+        {
+            Destroy(this.gameObject);
+            Destroy(collision.collider.gameObject);
         }
     }
 }
