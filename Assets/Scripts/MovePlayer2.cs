@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class MovePlayer2 : MonoBehaviour
 {
+    // Player Stats
     public float speed;
     public float thrustForce;
     Rigidbody2D player;
-    public int health;
+    private int health = 100;
 
     public GameObject bullet;
     Transform firePosition;
@@ -17,9 +18,13 @@ public class MovePlayer2 : MonoBehaviour
     public Image HealthBar;
     public float fillAmount;
 
+    // HyperSpace variables
+    private float counter = 10f, delayTime = 10f;
+
     // Use this for initialization
     void Start()
     {
+        // Initialize rigid body
         player = GetComponent<Rigidbody2D>();
         firePosition = transform.FindChild("FirePoint");
 
@@ -28,22 +33,54 @@ public class MovePlayer2 : MonoBehaviour
     void Update()
     {
         // if at anytime we are at 0 HP we die
-        if(fillAmount == 0f)
+        if(health <= 0)
         {
-            Destroy(this.gameObject);
-        }
-        // Shoot bullets
-        if (Input.GetKeyDown(KeyCode.RightControl))
-        {
-            Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
-            GetComponent<AudioSource>().Play();
+            Destroy(gameObject);
         }
 
+
+        // Fire Gun
+        Fire();
+
+        // Check Character Health
         UpdateHeatlth();
     }
 
     // Update is called once per frame
     void FixedUpdate()
+    {
+        // Check character movement
+        Movement();
+
+
+        // Check for HyperSpace
+        HyperSpace();
+
+    }
+
+    private void UpdateHeatlth()
+    {
+        HealthBar.fillAmount = fillAmount;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Check for collision on any objects
+        if (collision.collider.tag == "gameobject")
+        {
+            fillAmount -= 0.1f;
+            health -= 10;
+            Destroy(collision.collider.gameObject);
+        }
+        if (collision.collider.tag == "asteroid")
+        {
+            fillAmount -= 0.1f;
+            health -= 10;
+            Destroy(collision.collider.gameObject);
+        }
+    }
+
+    private void Movement()
     {
         // Character Goes UP
         if (Input.GetKey(KeyCode.UpArrow))
@@ -56,11 +93,7 @@ public class MovePlayer2 : MonoBehaviour
         {
             player.angularVelocity = speed;
         }
-        // Hyperspace
-        else if (Input.GetKey(KeyCode.S))
-        {
 
-        }
         // Character Goes Right
         else if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -72,22 +105,33 @@ public class MovePlayer2 : MonoBehaviour
         }
     }
 
-    private void UpdateHeatlth()
+    private void Fire()
     {
-        HealthBar.fillAmount = fillAmount;
+        // Shoot bullets
+        if (Input.GetKeyDown(KeyCode.RightControl))
+        {
+            Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
+            GetComponent<AudioSource>().Play();
+        }
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void HyperSpace()
     {
-        if (collision.collider.tag == "gameobject")
+        float x;
+        float y;
+
+        // Randomize Location
+        x = Random.Range(-18, 18);
+        y = Random.Range(-8, 8);
+
+        // Activate HyperSpace
+        if (Input.GetKeyDown(KeyCode.DownArrow) && (counter > delayTime))
         {
-            fillAmount -= 0.1f;
-            Destroy(collision.collider.gameObject);
+            this.transform.position = new Vector3(x, y, 0);
+            counter = 0;
         }
-        if (collision.collider.tag == "asteroid")
-        {
-            fillAmount -= 0.1f;
-            Destroy(collision.collider.gameObject);
-        }
+
+        counter += 1 * Time.deltaTime;
     }
 }
