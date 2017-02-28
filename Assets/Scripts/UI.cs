@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
+    // Access to buttons
     public GameObject pauseButton;
     public GameObject resumeButton;
     public GameObject restartButton;
@@ -43,7 +45,7 @@ public class UI : MonoBehaviour
             resumeButton.SetActive(false);
             pauseButton.SetActive(true);
             restartButton.SetActive(false);
-            Application.LoadLevel("GameScreen");
+            SceneManager.LoadScene("GameScreen");
         }
     }
 }

@@ -34,12 +34,6 @@ public class ThrustMovment : MonoBehaviour
 
     void Update()
     {
-        //if at any point we want to exit the game
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
         // if at anytime we are at 0 HP we die
         if (health <= 0)
         {
