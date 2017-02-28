@@ -88,7 +88,7 @@ public class ThrustMovment : MonoBehaviour
         }
         if (collision.collider.tag == "asteroid")
         {
-            fillAmount -= 0.02f;
+            fillAmount -= 0.1f;
             Destroy(collision.collider.gameObject);
         }
     }

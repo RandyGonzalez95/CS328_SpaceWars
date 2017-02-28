@@ -38,6 +38,8 @@ public class MovePlayer2 : MonoBehaviour
             Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
             GetComponent<AudioSource>().Play();
         }
+
+        UpdateHeatlth();
     }
 
     // Update is called once per frame
@@ -70,6 +72,11 @@ public class MovePlayer2 : MonoBehaviour
         }
     }
 
+    private void UpdateHeatlth()
+    {
+        HealthBar.fillAmount = fillAmount;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "gameobject")
@@ -79,7 +86,7 @@ public class MovePlayer2 : MonoBehaviour
         }
         if (collision.collider.tag == "asteroid")
         {
-            fillAmount -= 0.02f;
+            fillAmount -= 0.1f;
             Destroy(collision.collider.gameObject);
         }
     }
