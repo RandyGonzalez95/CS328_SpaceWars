@@ -67,5 +67,8 @@ public class MovePlayer2 : MonoBehaviour
             health -= 10;
         }
         if( health == 0 )
+        {
+
+        }
     }
 }

@@ -59,8 +59,8 @@ public class ThrustMovment : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collider2D collision)
+   /* private void OnCollisionEnter2D(Collider2D collision)
     {
-
-    }
+        
+    }*/
 }
