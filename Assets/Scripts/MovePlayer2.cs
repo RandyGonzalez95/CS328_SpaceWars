@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovePlayer2 : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class MovePlayer2 : MonoBehaviour
     public GameObject bullet;
     Transform firePosition;
 
+    // Health Amount
+    public Image HealthBar;
+    public float fillAmount;
+
     // Use this for initialization
     void Start()
     {
@@ -22,11 +27,16 @@ public class MovePlayer2 : MonoBehaviour
 
     void Update()
     {
+        // if at anytime we are at 0 HP we die
+        if(fillAmount == 0f)
+        {
+            Destroy(this.gameObject);
+        }
+        // Shoot bullets
         if (Input.GetKeyDown(KeyCode.RightControl))
         {
             Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
             GetComponent<AudioSource>().Play();
-            //GetComponent<AudioSource>().Play();
         }
     }
 
@@ -64,11 +74,13 @@ public class MovePlayer2 : MonoBehaviour
     {
         if (collision.collider.tag == "gameobject")
         {
-            health -= 10;
+            fillAmount -= 0.1f;
+            Destroy(collision.collider.gameObject);
         }
-        if( health == 0 )
+        if (collision.collider.tag == "asteroid")
         {
-
+            fillAmount -= 0.02f;
+            Destroy(collision.collider.gameObject);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlackHole : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class BlackHole : MonoBehaviour
     GameObject gameobject;
     GameObject player;
     GameObject player2;
+
+    public Image HP_1;
+    public Image HP_2;
 	// Use this for initialization
 	void Start ()
     {
@@ -48,11 +52,13 @@ public class BlackHole : MonoBehaviour
 
         if (collision.collider.tag == "Player")
         {
+            HP_1.fillAmount = 0f;
             Destroy(player);
         }
 
         if (collision.collider.tag == "Player2")
         {
+            HP_2.fillAmount = 0f;
             Destroy(player2);
         }
     }
