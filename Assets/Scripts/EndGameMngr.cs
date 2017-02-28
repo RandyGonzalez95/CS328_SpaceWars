@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndGameMngr : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class EndGameMngr : MonoBehaviour
 
     public GameObject restartButton;
     public GameObject pauseButton;
+
+    private bool flag;
+
+    public GameObject endPanel;
+    public Text text;
 
 	// Use this for initialization
 	void Start ()
@@ -30,10 +36,12 @@ public class EndGameMngr : MonoBehaviour
         if (player1 == null)
         {
             DisplayEnd();
+            flag = true;
         }
         if(player2 == null)
         {
             DisplayEnd();
+            flag = false;
         }
 
 	}
@@ -41,12 +49,22 @@ public class EndGameMngr : MonoBehaviour
     private void DisplayEnd()
     {
         Time.timeScale = 0;
+        endPanel.SetActive(true);
 
         // Activate the restart button
         if((restartButton != null) &&(pauseButton != null))
         {
             restartButton.SetActive(true);
             pauseButton.SetActive(false);
+        }
+
+        if(flag)
+        {
+            text.text = "Player 2 Wins!";
+        }
+        else
+        {
+            text.text = "Player 1 Wins!";
         }
 
 
