@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AsteroidCollision : MonoBehaviour
 {
-
+    
+    public GameObject smallerAsteroid;
 	// Use this for initialization
 	void Start ()
     {
@@ -23,6 +24,17 @@ public class AsteroidCollision : MonoBehaviour
         if (collision.collider.tag == "blackhole")
         {
             Destroy(this.gameObject);
+        }
+
+        if(collision.collider.tag == "gameobject" || collision.collider.tag == "asteroid")
+        {
+            Destroy(this.gameObject);
+
+            // Create 4 smaller asteroids after destroying the first one
+            Instantiate(smallerAsteroid, this.transform.position, Quaternion.identity);
+            Instantiate(smallerAsteroid, this.transform.position, Quaternion.identity);
+            Instantiate(smallerAsteroid, this.transform.position, Quaternion.identity);
+            Instantiate(smallerAsteroid, this.transform.position, Quaternion.identity);
         }
     }
 }

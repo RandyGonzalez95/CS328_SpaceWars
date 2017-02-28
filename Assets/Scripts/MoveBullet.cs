@@ -10,7 +10,7 @@ using UnityEngine;
 public class MoveBullet : MonoBehaviour
 {
     public bool flag; // this specifies wheter we shoot left or right
-    public float speed = 15f;
+    public float speed;
 
 	// Use this for initialization
 	void Start ()
