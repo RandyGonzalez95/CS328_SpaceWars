@@ -7,6 +7,7 @@ public class MovePlayer2 : MonoBehaviour
     public float speed;
     public float thrustForce;
     Rigidbody2D player;
+    public int health;
 
     public GameObject bullet;
     Transform firePosition;
@@ -57,5 +58,14 @@ public class MovePlayer2 : MonoBehaviour
         {
             player.angularVelocity = 0f;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "gameobject")
+        {
+            health -= 10;
+        }
+        if( health == 0 )
     }
 }
